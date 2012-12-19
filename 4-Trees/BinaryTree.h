@@ -219,26 +219,75 @@ void printNode(NodePointer node){
 
 void preorder(NodePointer node){
     
-    preorder(node->left);
-    preorder(node->right);
+    if(node->left){
+        preorder(node->left);
+    }
+    
+    if(node->right){
+        preorder(node->right);
+    }
     
     printNode(node);
 }
 
 void inorder(NodePointer node){
-    inorder(node->left);
-
-    printNode(node);
     
-    inorder(node->right);
+    if(node->left){
+        inorder(node->left);
+    }
+    
+    printNode(node);
+
+    if(node->right){
+        inorder(node->right);
+    }
 }
 
 void postorder(NodePointer node){
     
     printNode(node);
     
-    postorder(node->left);
+    if(node->left){
+        postorder(node->left);
+    }
+    if(node->right){
     postorder(node->right);
+    }
 }
+
+//
+//  Counts the number of nodes in a tree
+//
+
+int countNodesInTree(NodePointer tree){
+    return countNodesInTree(tree->left) + countNodesInTree(tree->right);
+}
+
+//
+//  Print the nodes in the tree.
+//
+
+void printNodesInSubtreeTree(NodePointer tree){
+    
+    if (tree) {
+        if (tree->left && tree->right) {
+            std::cout << "Node has two children. " << std::endl;
+        }
+        else if(!tree->left && !tree->right) {
+            std::cout << "Node has zero children. " << std::endl;
+        }
+        else{
+            std::cout << "Node has one child. " <<std::endl;
+        }
+    }
+
+    if(tree->left){
+        printNodesInSubtreeTree(tree->left);
+    }
+    if(tree->right){
+        printNodesInSubtreeTree(tree->right);
+    }
+}
+
 
 #endif
