@@ -164,51 +164,81 @@ void insert(NodePointer tree, int x){
 }
 
 //
-//  Some binary tree traversal methods
+//  Delete a node
 //
 
-void printPreTrav(NodePointer node){
-    printPreTrav(node->left);
-    printPreTrav(node->right);
+void deleteNodeFromTree(int num, NodePointer tree){
+    
+    if (tree == NULL) {
+        std::cout << "There's no number " << num << " in the tree.\n";
+    }
+
+    //
+    //  The value we're deleting is smaller than this node,
+    //  so move to the left of the tree, where smaller
+    //  numbers are places.
+    //
+    
+    else if(num < tree->value){
+        deleteNodeFromTree(num, tree->left);
+    }
     
     //
-    //  TODO: some action goes here,
-    // in our case, print.
+    //  The value we're deleting is larger than this node,
+    //  so move to the right of the tree, where larger
+    //  numbers are places.
     //
     
-    std::cout << node->value << "\n";
+    else if(num > tree->value){
+        deleteNodeFromTree(num, tree->right);
+    }
+    
+    //
+    //  Don't actually delete the node, cheat and use
+    //  a flag to pretend that the node is deleted.
+    //
+    
+    else{
+        tree->isDeleted = true;
+    }
 }
 
-void printInTrav(NodePointer node){
-    printInTrav(node->left);
-    
-    //
-    //  TODO: some action goes here,
-    // in our print.
-    //
-    
-    std::cout << node->value << "\n";
-    
-    printInTrav(node->right);
-}
+//
+//  Print a node, but only if it's not deleted
+//
 
-void printPostTrav(NodePointer node){
-    
-    //
-    //  TODO: some action goes here,
-    // in our case, print.
-    //
-    
-    std::cout << node->value << "\n";
-    
-    printPostTrav(node->left);
-    printPostTrav(node->right);
+void printNode(NodePointer node){
+    if(!node->isDeleted){
+        std::cout << node->value << " ";
+    }
 }
 
 //
-//
+//  Some binary tree traversal/print methods
 //
 
+void preorder(NodePointer node){
+    
+    preorder(node->left);
+    preorder(node->right);
+    
+    printNode(node);
+}
 
+void inorder(NodePointer node){
+    inorder(node->left);
+
+    printNode(node);
+    
+    inorder(node->right);
+}
+
+void postorder(NodePointer node){
+    
+    printNode(node);
+    
+    postorder(node->left);
+    postorder(node->right);
+}
 
 #endif
