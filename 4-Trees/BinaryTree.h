@@ -161,7 +161,6 @@ void insert(NodePointer tree, int x){
     else{
         setRight(p, x);
     }
-    
 }
 
 //
@@ -180,8 +179,8 @@ void printPreTrav(NodePointer node){
     std::cout << node->value << "\n";
 }
 
-void inTrav(NodePointer node){
-    inTrav(node->left);
+void printInTrav(NodePointer node){
+    printInTrav(node->left);
     
     //
     //  TODO: some action goes here,
@@ -190,10 +189,10 @@ void inTrav(NodePointer node){
     
     std::cout << node->value << "\n";
     
-    inTrav(node->right);
+    printInTrav(node->right);
 }
 
-void postTrav(NodePointer node){
+void printPostTrav(NodePointer node){
     
     //
     //  TODO: some action goes here,
@@ -202,8 +201,8 @@ void postTrav(NodePointer node){
     
     std::cout << node->value << "\n";
     
-    postTrav(node->left);
-    postTrav(node->right);
+    printPostTrav(node->left);
+    printPostTrav(node->right);
 }
 
 //
