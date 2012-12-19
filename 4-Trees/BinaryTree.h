@@ -289,5 +289,22 @@ void printNodesInSubtreeTree(NodePointer tree){
     }
 }
 
+//
+//  Delete the tree in postorder,
+//  so we don't lose access to
+//  child nodes.
+//
+
+void freeTree(NodePointer tree){
+    if(tree->left){
+        freeTree(tree->left);
+    }
+    
+    if(tree->right){
+        preorder(tree->right);
+    }
+    
+    delete tree;
+}
 
 #endif
