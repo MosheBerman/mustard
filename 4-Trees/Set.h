@@ -12,6 +12,7 @@
 #include <vector>
 
 class Instruction {
+public:
     int number;
     string instruction;
 };
